@@ -2,9 +2,8 @@ import React from 'react';
 
 import '../styles/TodoForm.css';
 
-const TodoForm = ({ inputValue, handleChange, handleKeyPress, handleClick }) => (
-
-    <div>
+const TodoForm = ({ inputValue, handleChange, handleKeyPress, handleClick, removeAllFromState }) => (
+    <div className="form">
       <input 
         value={inputValue}
         onChange={handleChange}
@@ -12,6 +11,9 @@ const TodoForm = ({ inputValue, handleChange, handleKeyPress, handleClick }) => 
       />
       <button onClick={handleClick}>
         add
+      </button>
+      <button onClick={removeAllFromState}>
+        Remove All
       </button>
     </div>
 

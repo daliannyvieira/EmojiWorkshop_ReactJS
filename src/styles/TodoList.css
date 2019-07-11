@@ -1,5 +1,7 @@
 ul {
-    position: absolute;
+	margin: 0;
+	padding: 0;
+/*    position: absolute;
     left: 405px;
-    top: 220px;
+    top: 220px;*/
 }

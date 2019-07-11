@@ -6,12 +6,17 @@ import '../styles/TodoList.css';
 
 const TodoList = ({ todos, handleRemove }) => {
     return(
-        <ul>{todos.map(todo => <Todo
-                originalText={todo}
-                todoText={emojify(todo)}
-                handleRemove={handleRemove}
-            />
-            )}</ul>
+        <ul>
+	        {todos.map((todo, index) =>
+	        	<Todo
+	        		key={index}
+	        		id={index}
+	            	originalText={todo}
+	            	todoText={emojify(todo)}
+	            	handleRemove={handleRemove}
+	        	/>
+	        )}
+        </ul>
     )   
 }
 

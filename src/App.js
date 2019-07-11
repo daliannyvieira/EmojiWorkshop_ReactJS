@@ -6,7 +6,6 @@ import TodoList from './components/TodoList';
 
 import './App.css'
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -25,24 +24,32 @@ class App extends Component {
 
 
   addToState = (event) => {  
-    if (event.type === "click" || event.key === "Enter") {
-      this.setState(prevState => { return {
-        text: '',
-        todos: prevState.todos.concat(this.state.text)} 
+    if ((event.type === "click" || event.key === "Enter") && this.state.text !== '') {
+      this.setState(prevState => { 
+        return {
+          text: '',
+          todos: prevState.todos.concat(this.state.text)
+        } 
       })
     }
   }
 
-  removeFromState = (event) => {
-    const todoText = event.target.dataset.text;
 
-    this.setState(prevState => { return {
-      todos: prevState.todos.filter(todo => todo !== todoText)} 
+  removeFromState = (id) => {
+    this.setState(prevState => { 
+      return {
+        todos: prevState.todos.filter((todo, index) => index !== id)
+      } 
     })
   }
 
-  render(){
+  removeAllFromState = () => {
+    this.setState({
+      todos: []
+    });
+  }
 
+  render(){
     return(
       <div>
         <div className="containerTitle">
@@ -54,9 +61,13 @@ class App extends Component {
           handleChange={this.handleChange}
           handleKeyPress={this.addToState}
           handleClick={this.addToState}
+          removeAllFromState={this.removeAllFromState}
         />
-        <TodoList todos={this.state.todos} handleRemove={this.removeFromState} />
-        </div>
+        <TodoList
+          todos={this.state.todos}
+          handleRemove={this.removeFromState}
+        />
+      </div>
     );
   }
 }
